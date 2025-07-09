@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toxic Comment Detector</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-lg p-0">
+    <div class="border border-black rounded-lg shadow-none bg-white">
+      <div class="p-6">
+        <h1 class="text-xl font-bold mb-4 text-black text-left">Post a Comment</h1>
+        <div id="commentsSection" class="space-y-4 mb-6"></div>
+        <form id="commentForm" class="space-y-3">
+          <textarea id="comment" class="w-full border border-black rounded-lg p-3 bg-white text-black placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-black resize-none" rows="4" placeholder="Write a comment..."></textarea>
+          <div class="flex justify-end">
+            <button type="submit" class="bg-black text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-900 transition">Post</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    const commentsSection = document.getElementById('commentsSection');
+    document.getElementById('commentForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const comment = document.getElementById('comment').value.trim();
+      if (!comment) return;
+      // Send to backend for toxicity check
+      const res = await fetch('http://localhost:8000/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ comment })
+      });
+      const data = await res.json();
+      if (data.is_toxic) {
+        alert('Toxic comment detected!');
+        return;
+      }
+      // Render comment on top if not toxic
+      const commentDiv = document.createElement('div');
+      commentDiv.className = 'border-b border-black pb-3';
+      commentDiv.innerHTML = `<div class='text-black text-base'>${comment.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>`;
+      commentsSection.prepend(commentDiv);
+      document.getElementById('comment').value = '';
+    });
+  </script>
+</body>
+</html>

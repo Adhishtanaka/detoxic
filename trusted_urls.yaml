@@ -2,3 +2,4 @@ trusted_urls:
 - http://localhost
 - http://127.0.0.1
 - http://myfrontend.com
+- http://127.0.0.1:5138
