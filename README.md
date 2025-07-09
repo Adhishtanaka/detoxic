@@ -50,5 +50,20 @@ Use the requests in `test/detoxic_api.http` or your favorite HTTP client (e.g., 
 ## Training
 See `train/Train.ipynb` for model training and export steps.
 
+## Docker
+
+You can run this API in a Docker container:
+
+1. Build the image:
+   ```
+   docker build -t detoxic-api .
+   ```
+2. Run the container (make sure your `.env`, model, and tokenizer files are present):
+   ```
+   docker run -p 8000:8000 --env-file .env detoxic-api
+   ```
+
+This will start the API at `http://localhost:8000`.
+
 ## License
 MIT
