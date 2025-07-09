@@ -29,7 +29,7 @@ This project provides a FastAPI-based REST API for detecting toxic comments usin
 ## Running the API
 Start the FastAPI server:
 ```
-uvicorn detoxic:app --host 0.0.0.0 --port 8000
+fastapi run detoxic.py
 ```
 
 ## API Endpoints
