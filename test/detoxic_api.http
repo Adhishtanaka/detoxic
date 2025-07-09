@@ -1,0 +1,39 @@
+# Single comment prediction
+POST http://localhost:8000/predict
+Content-Type: application/json
+
+{
+  "comment": "You are awesome!"
+}
+
+###
+POST http://localhost:8000/predict
+Content-Type: application/json
+
+{
+  "comment": "You are so stupid and ugly."
+}
+
+###
+# Batch comment prediction
+POST http://localhost:8000/predict_batch
+Content-Type: application/json
+
+{
+  "comments": [
+    "I love this!",
+    "You are a terrible person.",
+    "What a nice day."
+  ]
+}
+###
+# Add a trusted URL (requires password from .env)
+POST http://localhost:8000/add_trusted_url
+Content-Type: application/json
+
+{
+  "url": "http://myfrontend.com",
+  "password": "changeme"
+}
+
+
