@@ -9,6 +9,13 @@ This project provides a FastAPI-based REST API for detecting toxic comments usin
 - CORS restricted to trusted URLs (editable via API or YAML)
 - Add trusted origins securely with a password
 
+
+## Example: API in Action
+
+<img src="./screenshot/cnn.gif" width="600" alt="API Screenshot" />
+
+_Above: Example screenshot of the Detoxic API being tested in VS Code using the .http file._
+
 ## Setup
 1. Clone the repo and navigate to the folder.
 2. Create a virtual environment and install requirements:
