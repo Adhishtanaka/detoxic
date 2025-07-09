@@ -9,6 +9,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from dotenv import load_dotenv
 import yaml
 from fastapi.middleware.cors import CORSMiddleware
+import threading
 
 model = load_model('toxic_comment_cnn_model.h5')
 
@@ -101,3 +102,14 @@ def add_trusted_url(input: TrustedUrlIn):
     with open(TRUSTED_URLS_PATH, 'w') as f:
         yaml.safe_dump({'trusted_urls': TRUSTED_URLS}, f)
     return {"success": True, "trusted_urls": TRUSTED_URLS}
+
+# Pre-warm model with a dummy prediction to reduce first-request latency
+def warmup_model():
+    import numpy as np
+    dummy = np.zeros((1, MAX_SEQUENCE_LENGTH), dtype='int32')
+    try:
+        model.predict(dummy)
+    except Exception:
+        pass
+
+threading.Thread(target=warmup_model, daemon=True).start()
