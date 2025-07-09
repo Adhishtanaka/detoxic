@@ -36,7 +36,7 @@ _Above: Example screenshot of the Detoxic API being tested in VS Code using the 
 ## Running the API
 Start the FastAPI server:
 ```
-uvicorn detoxic:app --host 0.0.0.0 --port 8000
+fastapi run detoxic.py
 ```
 
 ## API Endpoints
