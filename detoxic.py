@@ -95,8 +95,9 @@ def predict_batch(input: TextsIn):
 def add_trusted_url(input: TrustedUrlIn):
     if input.password != TRUSTED_URLS_PASSWORD:
         return {"success": False, "error": "Unauthorized"}
-    if input.url not in TRUSTED_URLS:
-        TRUSTED_URLS.append(input.url)
-        with open(TRUSTED_URLS_PATH, 'w') as f:
-            yaml.safe_dump({'trusted_urls': TRUSTED_URLS}, f)
+    if input.url in TRUSTED_URLS:
+        return {"success": False, "error": "URL already in trusted list", "trusted_urls": TRUSTED_URLS}
+    TRUSTED_URLS.append(input.url)
+    with open(TRUSTED_URLS_PATH, 'w') as f:
+        yaml.safe_dump({'trusted_urls': TRUSTED_URLS}, f)
     return {"success": True, "trusted_urls": TRUSTED_URLS}

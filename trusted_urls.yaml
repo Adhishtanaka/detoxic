@@ -1,4 +1,4 @@
-# Trusted URLs for CORS
 trusted_urls:
-  - "http://localhost"
-  - "http://127.0.0.1"
+- http://localhost
+- http://127.0.0.1
+- http://myfrontend.com
