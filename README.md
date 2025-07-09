@@ -24,7 +24,7 @@ _Above: Example screenshot of the Detoxic API being tested in VS Code using the 
    .venv\Scripts\activate
    pip install -r requirements.txt
    ```
-3. Set up `.env` (see `.env.example` or below):
+3. Set up `.env` File:
    ```
    MODEL_PATH=toxic_comment_cnn_model.h5
    TOKENIZER_CONFIG=tokenizer_config.json
