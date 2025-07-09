@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables
+.env
+
+
+# Data files
+*.parquet
+*.csv
+*.tsv
+*.jsonl
+
+# Output and logs
+*.log
+*.out
+*.tmp
+
+# VSCode
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Python egg
+*.egg-info/
+.eggs/
+
+detoxic/__pycache__/
+train/__pycache__/
